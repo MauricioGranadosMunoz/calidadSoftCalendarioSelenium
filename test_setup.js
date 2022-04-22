@@ -2,7 +2,14 @@
 const webdriver = require('selenium-webdriver');
 const { By, until } = require('selenium-webdriver');
 const colors = require('colors');
-const driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
+
+
+require('chromedriver');
+var driver = new webdriver.Builder()
+  .forBrowser('chrome')
+  .build();
+
+// const driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
  
 // INSTANCIA PARA REALIZAR PRUEBAS EN EL LOCAL HOST
 
