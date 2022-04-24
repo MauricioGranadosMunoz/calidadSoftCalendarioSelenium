@@ -2,7 +2,9 @@
 const webdriver = require('selenium-webdriver');
 const { By, until } = require('selenium-webdriver');
 const colors = require('colors');
+const rn = require('random-number');
 
+const usuarioEmail = `pruebaemail${rn()}@test.com`;
 
 require('chromedriver');
 var driver = new webdriver.Builder()
@@ -21,7 +23,7 @@ driver.navigate().to("http://localhost:3000/")
 
 .then(() => console.log('\n','REGISTRO DE UN NUEVO USUARIO'.cyan.underline.bold))
 .then(() => driver.findElement(By.css('.input-reg-nombre')).sendKeys('Nombre de Prueba'))
-.then(() => driver.findElement(By.css('.input-reg-email')).sendKeys('pruebaemail5@test.com'))
+.then(() => driver.findElement(By.css('.input-reg-email')).sendKeys(usuarioEmail))
 .then(() => driver.findElement(By.css('.input-reg-contra')).sendKeys('123456'))
 .then(() => driver.findElement(By.css('.input-reg-contra-rep')).sendKeys('123456'))
 
@@ -33,7 +35,7 @@ driver.navigate().to("http://localhost:3000/")
 // PROCESO DE USER FLOW DE LOGIN IN PARA HACER EL CRUD DE TESTING
 .then(() => {
     console.log('\n','LOGIN DE UN NUEVO USUARIO'.cyan.underline.bold);
-    driver.findElement(By.css('#login-username')).sendKeys('pruebaemail5@test.com')
+    driver.findElement(By.css('#login-username')).sendKeys(usuarioEmail)
 })
 .then(() => driver.findElement(By.css('#login-pass')).sendKeys('123456'))
 .then(() => {
@@ -43,7 +45,7 @@ driver.navigate().to("http://localhost:3000/")
 
 // METODOS PARA AGREGAR UN NUEVO EVENTO
 .then(() => console.log('\n','CREANDO UN EVENTO NUEVO'.cyan.underline.bold))
-.then(() => driver.wait(until.elementLocated(By.css('#favicon-cta')), 30000).click())
+.then(() => driver.wait(until.elementLocated(By.css('.favicon-cta-class')), 30000).click())
 .then(() => driver.findElement(By.css('#titulo-evento')).sendKeys('TITULO AUTOMATIZADO'))
 .then(() => driver.findElement(By.css('#notas-evento')).sendKeys('NOTAS AUTOMATIZADO'))
 .then(() => {
